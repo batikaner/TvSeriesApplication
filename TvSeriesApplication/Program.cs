@@ -8,7 +8,7 @@ namespace TvSeriesApplication
 {
     static class Program
     {
-        /// <summary>
+        /// <summary>  
         /// Uygulamanın ana girdi noktası.
         /// </summary>
         [STAThread]

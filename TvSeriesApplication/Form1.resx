@@ -204,7 +204,7 @@
     <value>100, 20</value>
   </data>
   <data name="txtUsername.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;txtUsername.Name" xml:space="preserve">
     <value>txtUsername</value>
@@ -225,7 +225,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnLogin.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="btnLogin.Text" xml:space="preserve">
     <value>Login</value>
@@ -249,7 +249,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnRegister.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="btnRegister.Text" xml:space="preserve">
     <value>Register</value>
