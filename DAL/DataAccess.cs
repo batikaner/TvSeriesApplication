@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,22 +13,32 @@ namespace DAL
     public class DataAccess
     {
         public SqlConnection sql_cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
-        public SqlCommand sql_cmd = null;
+        public SqlCommand sql_cmd;
 
 
         public int ExecuteNonQuery(string cmdtext, SqlParameter[] param)
         {
+                sql_cmd = new SqlCommand(cmdtext, sql_cn);
+                if (param != null)
+                {
+                    sql_cmd.Parameters.AddRange(param);
+                }
+                ConnAc();
+                int feedback = sql_cmd.ExecuteNonQuery();
+                return feedback;
+        }
 
-            sql_cmd = new SqlCommand(cmdtext, sql_cn);
-            if (param != null)
+
+
+        public SqlDataReader ExecuteReader(string cmdText, SqlParameter[] p)
+        {
+            sql_cmd = new SqlCommand(cmdText, sql_cn);
+            if (p != null)
             {
-                sql_cmd.Parameters.AddRange(param);
+               sql_cmd.Parameters.AddRange(p);
             }
             ConnAc();
-            int feedback = sql_cmd.ExecuteNonQuery();
-
-            return feedback;
-
+            return sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         public void ConnAc()
@@ -47,9 +56,6 @@ namespace DAL
                 throw;
             }
         }
-
-
-
         public void ConnKapat()
         {
             try
@@ -66,6 +72,10 @@ namespace DAL
             }
         }
 
+        public bool ExecuteNonQuery(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

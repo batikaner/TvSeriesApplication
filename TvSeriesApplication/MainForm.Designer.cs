@@ -1,6 +1,6 @@
 ﻿namespace TvSeriesApplication
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///Gerekli tasarımcı değişkeni.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -36,6 +36,9 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.cmBox = new System.Windows.Forms.ComboBox();
+            this.pnlTxt = new System.Windows.Forms.Panel();
+            this.pnlTxt.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -56,6 +59,7 @@
             // txtUsername
             // 
             this.txtUsername.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
+            this.txtUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             resources.ApplyResources(this.txtUsername, "txtUsername");
             this.txtUsername.Name = "txtUsername";
             // 
@@ -77,22 +81,38 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // Form1
+            // cmBox
+            // 
+            this.cmBox.FormattingEnabled = true;
+            resources.ApplyResources(this.cmBox, "cmBox");
+            this.cmBox.Name = "cmBox";
+            // 
+            // pnlTxt
+            // 
+            this.pnlTxt.Controls.Add(this.txtUsername);
+            this.pnlTxt.Controls.Add(this.txtPassword);
+            resources.ApplyResources(this.pnlTxt, "pnlTxt");
+            this.pnlTxt.Name = "pnlTxt";
+            // 
+            // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Yellow;
+            this.Controls.Add(this.pnlTxt);
+            this.Controls.Add(this.cmBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "Form1";
+            this.HelpButton = true;
+            this.Name = "MainForm";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.pnlTxt.ResumeLayout(false);
+            this.pnlTxt.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,6 +127,8 @@
         private System.Windows.Forms.Button btnLogin;
         public System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.ComboBox cmBox;
+        public System.Windows.Forms.Panel pnlTxt;
     }
 }
 

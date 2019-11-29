@@ -8,12 +8,14 @@ namespace TvSeries.MODEL
 {
     public class Members
     {
-       
-
-        public string member_passwd { get; set; }
         public string member_username { get; set; }
 
-        public DateTime RegDate { get; set; }
+        public string member_passwd { get; set; }
         
+
+        public DateTime RegDate { get; set; }
+
+        public int tv_userID  { get; set; }
+
     }
 }

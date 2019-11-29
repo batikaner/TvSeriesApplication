@@ -16,80 +16,64 @@ namespace TvSeriesApplication
 {
     public partial class NewUser : Form
     {
-        private Form1 form1;
+        private MainForm form1;
 
         public NewUser()
         {
             InitializeComponent();
         }
 
-        public NewUser(Form1 form1)
+        public NewUser(MainForm form1)
         {
             this.form1 = form1;
             InitializeComponent();
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        public void NewRegister()
         {
-
-            Members mb = new Members();
-            MemberBL mbld = new MemberBL();
-
-            mb.member_username = txtNewUser.Text.Trim();
-            mb.member_passwd = txtNewUserPass.Text.Trim();
-
-            if (MessageBox.Show("Do you want to register?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                txtNewUser.Text = txtNewUser.Text.ToLower();
-                if (txtNewUserPass.Text.Trim() == txtNewUserPass2.Text.Trim())
+                Members mb = new Members();
+                MemberBL mbld = new MemberBL();
+
+                mb.member_username = txtNewUser.Text.Trim();
+                mb.member_passwd = txtNewUserPass.Text.Trim();
+
+                if (MessageBox.Show("Do you want to register?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show(mbld.AddaMember(mb) ? "Ekleme Başarılı" : "Ekleme Başarısız");
+                    txtNewUser.Text = txtNewUser.Text.ToLower();
+                    if (txtNewUserPass.Text.Trim() == txtNewUserPass2.Text.Trim())
+                    {
+                        MessageBox.Show(mbld.AddaMember(mb) ? "Ekleme Başarılı" : "Ekleme Başarısız");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Şifreler Yanlış");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Şifreler Yanlış");
                 }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Şifreler Yanlış");
+
+                throw;
             }
+            finally
+            {
+                txtNewUser.Clear();
+                txtNewUserPass.Clear();
+                txtNewUserPass2.Clear();
+            }
+            
         }
 
 
-
-      
-
-        public void daralt()
+        private void btnRegister_Click(object sender, EventArgs e)
         {
-            /* 
-            sqlcn= new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
-            sqlcn.Open();
-            if (MessageBox.Show("Do you want to register?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-
-                txtNewUser.Text = txtNewUser.Text.ToLower();
-                SqlCommand sqlcm = null;
-                if (txtNewUserPass.Text.Trim() == txtNewUserPass2.Text.Trim())
-                {
-
-
-                    sqlcn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
-                    sqlcm = new SqlCommand($"Insert into tbl_userlogin values('{txtNewUser.Text.Trim()}','{txtNewUserPass.Text.Trim()})", sqlcn);
-
-
-                    sqlcm.ExecuteNonQuery();
-                    Exchange = sqlcm.ExecuteNonQuery();
-                    if (Exchange>0)
-                    {
-                        MessageBox.Show("Approved !");
-                    }
-                    sqlcn.Close();
-                }
-
-                else { MessageBox.Show("Şifreler Uyuşmuyor"); }
-            }
-            */
+            NewRegister();
         }
     }
     }
