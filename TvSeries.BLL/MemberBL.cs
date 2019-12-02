@@ -35,6 +35,10 @@ namespace TvSeries.BLL
                 throw;
             }
         }
+        public void Dispose()
+        {
+            ((IDisposable)DataAcc).Dispose();
+        }
 
 
         public List<Members> memberList()
@@ -49,7 +53,9 @@ namespace TvSeries.BLL
             }
             dr.Close();
             lst.Insert(0, new Members { member_username = "Seçiniz" });
+            DataAcc.Dispose();
             return lst;
+            
         }
 
         public Members MemberLogin(string tv_name,string tv_pass)
@@ -67,7 +73,7 @@ namespace TvSeries.BLL
                     mem.member_username = dr["tv_username"].ToString();
                     mem.member_passwd = dr["tv_userpass"].ToString();
                 }
-
+                DataAcc.Dispose();
                 dr.Close();
                 return mem;
             }

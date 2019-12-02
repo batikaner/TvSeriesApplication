@@ -16,18 +16,27 @@ namespace TvSeriesApplication
 {
     public partial class NewUser : Form
     {
-        private MainForm form1;
+        private LoginScreen form1;
+
+
+        public NewUser(LoginScreen form1)
+        {
+            this.form1 = form1;          
+            InitializeComponent();
+        }
+
+
+
 
         public NewUser()
         {
+
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
-        public NewUser(MainForm form1)
-        {
-            this.form1 = form1;
-            InitializeComponent();
-        }
+
+        
 
         public void NewRegister()
         {
@@ -44,16 +53,17 @@ namespace TvSeriesApplication
                     txtNewUser.Text = txtNewUser.Text.ToLower();
                     if (txtNewUserPass.Text.Trim() == txtNewUserPass2.Text.Trim())
                     {
-                        MessageBox.Show(mbld.AddaMember(mb) ? "Ekleme Başarılı" : "Ekleme Başarısız");
+                        MessageBox.Show(mbld.AddaMember(mb) ? "Request Approved" : "Request Denied!");
+                        
                     }
                     else
                     {
-                        MessageBox.Show("Şifreler Yanlış");
+                        MessageBox.Show("Password Does Not Match");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Şifreler Yanlış");
+                    MessageBox.Show("Password Does Not Match");
                 }
             }
             catch (Exception)

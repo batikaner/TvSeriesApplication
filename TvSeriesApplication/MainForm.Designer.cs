@@ -3,14 +3,14 @@
     partial class MainForm
     {
         /// <summary>
-        ///Gerekli tasarımcı değişkeni.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///Kullanılan tüm kaynakları temizleyin.
+        /// Clean up any resources being used.
         /// </summary>
-        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doğru; aksi halde yanlış.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,115 +20,105 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer üretilen kod
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Tasarımcı desteği için gerekli metot - bu metodun 
-        ///içeriğini kod düzenleyici ile değiştirmeyin.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmBox = new System.Windows.Forms.ComboBox();
-            this.pnlTxt = new System.Windows.Forms.Panel();
-            this.pnlTxt.SuspendLayout();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
-            // label1
+            // button2
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            this.button2.BackgroundImage = global::TvSeriesApplication.Properties.Resources.cRickc_;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Cursor = System.Windows.Forms.Cursors.PanEast;
+            this.button2.Location = new System.Drawing.Point(42, 60);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(159, 233);
+            this.button2.TabIndex = 1;
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // button3
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            this.button3.Location = new System.Drawing.Point(237, 35);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(63, 154);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // txtPassword
+            // button4
             // 
-            resources.ApplyResources(this.txtPassword, "txtPassword");
-            this.txtPassword.Name = "txtPassword";
+            this.button4.Location = new System.Drawing.Point(336, 35);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(63, 154);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // txtUsername
+            // button5
             // 
-            this.txtUsername.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
-            this.txtUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            resources.ApplyResources(this.txtUsername, "txtUsername");
-            this.txtUsername.Name = "txtUsername";
+            this.button5.Location = new System.Drawing.Point(138, 480);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(63, 154);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
             // 
-            // btnLogin
+            // button6
             // 
-            resources.ApplyResources(this.btnLogin, "btnLogin");
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.button6.Location = new System.Drawing.Point(249, 549);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(63, 154);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
             // 
-            // btnRegister
+            // linkLabel1
             // 
-            resources.ApplyResources(this.btnRegister, "btnRegister");
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // cmBox
-            // 
-            this.cmBox.FormattingEnabled = true;
-            resources.ApplyResources(this.cmBox, "cmBox");
-            this.cmBox.Name = "cmBox";
-            // 
-            // pnlTxt
-            // 
-            this.pnlTxt.Controls.Add(this.txtUsername);
-            this.pnlTxt.Controls.Add(this.txtPassword);
-            resources.ApplyResources(this.pnlTxt, "pnlTxt");
-            this.pnlTxt.Name = "pnlTxt";
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(109, 307);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(29, 13);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Rick";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // MainForm
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Yellow;
-            this.Controls.Add(this.pnlTxt);
-            this.Controls.Add(this.cmBox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnRegister);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.HelpButton = true;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(891, 642);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Name = "MainForm";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.pnlTxt.ResumeLayout(false);
-            this.pnlTxt.PerformLayout();
+            this.Text = "MainForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.TextBox txtUsername;
-        public System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Button btnLogin;
-        public System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.ComboBox cmBox;
-        public System.Windows.Forms.Panel pnlTxt;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
-

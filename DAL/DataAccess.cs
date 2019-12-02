@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace DAL
 {
-    public class DataAccess
+    public class DataAccess : IDisposable
     {
         public SqlConnection sql_cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
         public SqlCommand sql_cmd;
@@ -18,16 +18,15 @@ namespace DAL
 
         public int ExecuteNonQuery(string cmdtext, SqlParameter[] param)
         {
-                sql_cmd = new SqlCommand(cmdtext, sql_cn);
-                if (param != null)
-                {
-                    sql_cmd.Parameters.AddRange(param);
-                }
-                ConnAc();
-                int feedback = sql_cmd.ExecuteNonQuery();
-                return feedback;
+            sql_cmd = new SqlCommand(cmdtext, sql_cn);
+            if (param != null)
+            {
+                sql_cmd.Parameters.AddRange(param);
+            }
+            ConnAc();
+            int feedback = sql_cmd.ExecuteNonQuery();
+            return feedback;
         }
-
 
 
         public SqlDataReader ExecuteReader(string cmdText, SqlParameter[] p)
@@ -35,7 +34,7 @@ namespace DAL
             sql_cmd = new SqlCommand(cmdText, sql_cn);
             if (p != null)
             {
-               sql_cmd.Parameters.AddRange(p);
+                sql_cmd.Parameters.AddRange(p);
             }
             ConnAc();
             return sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -75,6 +74,18 @@ namespace DAL
         public bool ExecuteNonQuery(string v)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+
+            if (sql_cn != null && sql_cmd != null)
+            {
+                sql_cn.Dispose();
+                sql_cmd.Dispose();
+            }
+
+
         }
     }
 
