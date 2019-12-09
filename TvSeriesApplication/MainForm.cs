@@ -16,18 +16,12 @@ namespace TvSeriesApplication
         public MainForm()
         {
             InitializeComponent(); 
-
         }
         private void VisitLink()
         {
-         
             linkLabel1.LinkVisited = true;
-      
             System.Diagnostics.Process.Start("https://www.imdb.com/title/tt2861424/");
         }
-
-
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -38,6 +32,12 @@ namespace TvSeriesApplication
             {
                 MessageBox.Show("Error!");
             }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            RickAndMorty rm = new RickAndMorty();
+            this.Close();
+            rm.Show();
         }
     }
 }

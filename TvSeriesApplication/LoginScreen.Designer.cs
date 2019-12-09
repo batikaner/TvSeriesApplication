@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmBox = new System.Windows.Forms.ComboBox();
             this.pnlTxt = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlTxt.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,11 +97,19 @@
             resources.ApplyResources(this.pnlTxt, "pnlTxt");
             this.pnlTxt.Name = "pnlTxt";
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // LoginScreen
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Yellow;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlTxt);
             this.Controls.Add(this.cmBox);
             this.Controls.Add(this.label3);
@@ -130,6 +139,7 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.ComboBox cmBox;
         public System.Windows.Forms.Panel pnlTxt;
+        private System.Windows.Forms.Button button1;
     }
 }
 

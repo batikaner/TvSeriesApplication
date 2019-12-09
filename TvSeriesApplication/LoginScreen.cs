@@ -24,7 +24,6 @@ namespace TvSeriesApplication
         //{
         //    this.frr = frm2;
         //    InitializeComponent();
-
         //}
         public LoginScreen()
         {
@@ -51,7 +50,6 @@ namespace TvSeriesApplication
         {
             try
             {
-
                 MemberBL membl = new MemberBL();
                 Members mb = membl.MemberLogin(txtUsername.Text.Trim(), txtPassword.Text.Trim());
                 if (mb == null)
@@ -65,19 +63,15 @@ namespace TvSeriesApplication
                     frr.Visible = true;
                 }
             }
-
             catch (Exception)
             {
-
                 throw;
             }
             finally
             {
                 CleanPanel();
             }
-
         }
-
 
         public void CleanPanel()
         {
@@ -94,6 +88,7 @@ namespace TvSeriesApplication
             cmBox.ValueMember = "tv_userID";
             cmBox.DisplayMember = "member_username";
             cmBox.DataSource = sb.memberList();
+            cmBox.Visible = false;
         }
 
         private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
@@ -103,6 +98,13 @@ namespace TvSeriesApplication
                 return;
             }
             e.Handled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Transactions tr = new Transactions();
+            tr.Show();
         }
     }
 }

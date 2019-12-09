@@ -35,10 +35,6 @@ namespace TvSeries.BLL
                 throw;
             }
         }
-        public void Dispose()
-        {
-            ((IDisposable)DataAcc).Dispose();
-        }
 
 
         public List<Members> memberList()
@@ -55,15 +51,15 @@ namespace TvSeries.BLL
             lst.Insert(0, new Members { member_username = "Seçiniz" });
             DataAcc.Dispose();
             return lst;
-            
+
         }
 
-        public Members MemberLogin(string tv_name,string tv_pass)
+        public Members MemberLogin(string tv_name, string tv_pass)
         {
             Members mb = new Members();
             try
             {
-                SqlParameter[] p = { new SqlParameter("@tv_username", tv_name),new SqlParameter("tv_userpass",tv_pass) };
+                SqlParameter[] p = { new SqlParameter("@tv_username", tv_name), new SqlParameter("tv_userpass", tv_pass) };
                 SqlDataReader dr = DataAcc.ExecuteReader("select * from  tbl_userlogin WHERE tv_username=@tv_username and tv_userpass=@tv_userpass", p);
                 Members mem = null;
 
@@ -85,7 +81,32 @@ namespace TvSeries.BLL
 
 
 
+        public bool MemberDelete(int tvv_userid)
+        {
+            SqlParameter[] p = { new SqlParameter("@tv_userID", tvv_userid) };
+            return DataAcc.ExecuteNonQuery("delete from tbl_userlogin where tv_userID=@tv_userID", p) > 0;
+        }
 
+
+        public DataTable MemberList()
+        {
+            return DataAcc.MyDataTable("select * from tbl_Series");
+        }
+
+
+        public bool MemberUpdate(Members mem)
+        {
+            SqlParameter[] p = { new SqlParameter("@tv_username", mem.member_username), new SqlParameter("@tv_userpass", mem.member_passwd), new SqlParameter("@tv_userID", mem.tv_userID) };
+            int sonuc = DataAcc.ExecuteNonQuery("UPDATE tbl_userlogin SET tv_username=@tv_username, tv_userpass=@tv_userpass  WHERE tv_username=@tv_username", p);
+            return sonuc > 0;
+        }
+
+
+
+        public void Dispose()
+        {
+            ((IDisposable)DataAcc).Dispose();
+        }
 
     }
 }

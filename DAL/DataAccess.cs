@@ -75,7 +75,13 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
-
+        public DataTable MyDataTable(string cmdtext)
+        {
+            SqlDataAdapter da = new SqlDataAdapter(cmdtext, sql_cn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
         public void Dispose()
         {
 
