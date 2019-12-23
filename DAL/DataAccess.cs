@@ -44,7 +44,6 @@ namespace DAL
         {
             try
             {
-
                 if (sql_cn != null && sql_cn.State != ConnectionState.Open)
                 {
                     sql_cn.Open();

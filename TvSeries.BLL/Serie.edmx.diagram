@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c03dbc0678a44ae9dead1c3e0977009" Name="Diagram1">
+        <EntityTypeShape EntityType="tvSeriesDBModel.tbl_Series" Width="1.5" PointX="2" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="tvSeriesDBModel.tbl_userlogin" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="tvSeriesDBModel.tv_UserSerie" Width="1.5" PointX="4" PointY="1.125" />
+        <AssociationConnector Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series" />
+        <AssociationConnector Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_userlogin" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

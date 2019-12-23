@@ -24,21 +24,12 @@ namespace TvSeriesApplication
             this.form1 = form1;          
             InitializeComponent();
         }
-
-
-
-
         public NewUser()
         {
-
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-        }
-
-
-        
-
-        public void NewRegister()
+        }        
+        public void NewRegister(string usernam)
         {
             try
             {
@@ -54,7 +45,7 @@ namespace TvSeriesApplication
                     if (txtNewUserPass.Text.Trim() == txtNewUserPass2.Text.Trim())
                     {
                         MessageBox.Show(mbld.AddaMember(mb) ? "Request Approved" : "Request Denied!");
-                        
+
                     }
                     else
                     {
@@ -67,8 +58,7 @@ namespace TvSeriesApplication
                 }
             }
             catch (Exception)
-            {
-
+            {                
                 throw;
             }
             finally
@@ -77,13 +67,10 @@ namespace TvSeriesApplication
                 txtNewUserPass.Clear();
                 txtNewUserPass2.Clear();
             }
-            
         }
-
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            NewRegister();
+            NewRegister(txtNewUser.Text.Trim());
         }
     }
     }

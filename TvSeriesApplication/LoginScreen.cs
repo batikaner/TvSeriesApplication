@@ -17,16 +17,12 @@ namespace TvSeriesApplication
 {
     public partial class LoginScreen : Form
     {
-        //private MainForm frr;
+        
 
 
-        //public LoginScreen(MainForm frm2)
-        //{
-        //    this.frr = frm2;
-        //    InitializeComponent();
-        //}
         public LoginScreen()
         {
+           
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
         }
@@ -42,10 +38,11 @@ namespace TvSeriesApplication
 
         public void btnRegister_Click(object sender, EventArgs e)
         {
-            NewUser nw = new NewUser(); //New User Form
+         
+            NewUser nw = new NewUser(); 
             nw.Show();
         }
-
+        public string loginer_username;
         public void LoginBtn()
         {
             try
@@ -58,7 +55,8 @@ namespace TvSeriesApplication
                 }
                 else
                 {
-                    MessageBox.Show("Access Successful\nUser : " + mb.member_username.ToUpper());              
+                    MessageBox.Show("Access Successful\nUser : " + mb.member_username.ToUpper());
+                    loginer_username = mb.member_username;
                     this.Hide();
                     frr.Visible = true;
                 }

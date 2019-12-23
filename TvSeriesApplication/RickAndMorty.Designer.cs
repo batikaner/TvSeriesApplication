@@ -62,7 +62,7 @@
             // showSeriesToolStripMenuItem
             // 
             this.showSeriesToolStripMenuItem.Name = "showSeriesToolStripMenuItem";
-            this.showSeriesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.showSeriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showSeriesToolStripMenuItem.Text = "Show Series";
             this.showSeriesToolStripMenuItem.Click += new System.EventHandler(this.showSeriesToolStripMenuItem_Click);
             // 
@@ -84,7 +84,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(106, 74);
+            this.dataGridView1.Location = new System.Drawing.Point(154, 77);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(427, 242);
@@ -95,8 +95,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 602);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.dataGridView1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "RickAndMorty";
             this.Text = "RickAndMorty";

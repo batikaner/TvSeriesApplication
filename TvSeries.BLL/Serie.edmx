@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="tvSeriesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Series">
+          <Key>
+            <PropertyRef Name="serie_id" />
+          </Key>
+          <Property Name="serie_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serie_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="serie_date" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="serie_rating" Type="float" Nullable="false" />
+          <Property Name="serie_link" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tbl_userlogin">
+          <Key>
+            <PropertyRef Name="tv_userID" />
+          </Key>
+          <Property Name="tv_username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="tv_userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tv_userpass" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tv_UserSerie">
+          <Key>
+            <PropertyRef Name="tv_userid" />
+          </Key>
+          <Property Name="serie_id" Type="int" />
+          <Property Name="tv_userid" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tv_UserSerie_tbl_Series">
+          <End Role="tbl_Series" Type="Self.tbl_Series" Multiplicity="0..1" />
+          <End Role="tv_UserSerie" Type="Self.tv_UserSerie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Series">
+              <PropertyRef Name="serie_id" />
+            </Principal>
+            <Dependent Role="tv_UserSerie">
+              <PropertyRef Name="serie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tv_UserSerie_tbl_userlogin">
+          <End Role="tbl_userlogin" Type="Self.tbl_userlogin" Multiplicity="1" />
+          <End Role="tv_UserSerie" Type="Self.tv_UserSerie" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_userlogin">
+              <PropertyRef Name="tv_userID" />
+            </Principal>
+            <Dependent Role="tv_UserSerie">
+              <PropertyRef Name="tv_userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tvSeriesDBModelStoreContainer">
+          <EntitySet Name="tbl_Series" EntityType="Self.tbl_Series" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_userlogin" EntityType="Self.tbl_userlogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tv_UserSerie" EntityType="Self.tv_UserSerie" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tv_UserSerie].[serie_id] AS [serie_id], 
+    [tv_UserSerie].[tv_userid] AS [tv_userid]
+    FROM [dbo].[tv_UserSerie] AS [tv_UserSerie]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tv_UserSerie_tbl_Series" Association="Self.FK_tv_UserSerie_tbl_Series">
+            <End Role="tbl_Series" EntitySet="tbl_Series" />
+            <End Role="tv_UserSerie" EntitySet="tv_UserSerie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tv_UserSerie_tbl_userlogin" Association="Self.FK_tv_UserSerie_tbl_userlogin">
+            <End Role="tbl_userlogin" EntitySet="tbl_userlogin" />
+            <End Role="tv_UserSerie" EntitySet="tv_UserSerie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tvSeriesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Series">
+          <Key>
+            <PropertyRef Name="serie_id" />
+          </Key>
+          <Property Name="serie_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serie_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="serie_date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="serie_rating" Type="Double" Nullable="false" />
+          <Property Name="serie_link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tv_UserSerie" Relationship="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series" FromRole="tbl_Series" ToRole="tv_UserSerie" />
+        </EntityType>
+        <EntityType Name="tbl_userlogin">
+          <Key>
+            <PropertyRef Name="tv_userID" />
+          </Key>
+          <Property Name="tv_username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tv_userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tv_userpass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tv_UserSerie" Relationship="tvSeriesDBModel.FK_tv_UserSerie_tbl_userlogin" FromRole="tbl_userlogin" ToRole="tv_UserSerie" />
+        </EntityType>
+        <EntityContainer Name="tvSeriesDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Series" EntityType="Self.tbl_Series" />
+          <EntitySet Name="tbl_userlogin" EntityType="Self.tbl_userlogin" />
+          <EntitySet Name="tv_UserSerie" EntityType="tvSeriesDBModel.tv_UserSerie" />
+          <AssociationSet Name="FK_tv_UserSerie_tbl_Series" Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series">
+            <End Role="tbl_Series" EntitySet="tbl_Series" />
+            <End Role="tv_UserSerie" EntitySet="tv_UserSerie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tv_UserSerie_tbl_userlogin" Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_userlogin">
+            <End Role="tbl_userlogin" EntitySet="tbl_userlogin" />
+            <End Role="tv_UserSerie" EntitySet="tv_UserSerie" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tv_UserSerie">
+          <Key>
+            <PropertyRef Name="tv_userid" />
+          </Key>
+          <Property Name="serie_id" Type="Int32" />
+          <Property Name="tv_userid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Series" Relationship="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series" FromRole="tv_UserSerie" ToRole="tbl_Series" />
+          <NavigationProperty Name="tbl_userlogin" Relationship="tvSeriesDBModel.FK_tv_UserSerie_tbl_userlogin" FromRole="tv_UserSerie" ToRole="tbl_userlogin" />
+        </EntityType>
+        <Association Name="FK_tv_UserSerie_tbl_Series">
+          <End Type="tvSeriesDBModel.tbl_Series" Role="tbl_Series" Multiplicity="0..1" />
+          <End Type="tvSeriesDBModel.tv_UserSerie" Role="tv_UserSerie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Series">
+              <PropertyRef Name="serie_id" />
+            </Principal>
+            <Dependent Role="tv_UserSerie">
+              <PropertyRef Name="serie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tv_UserSerie_tbl_userlogin">
+          <End Type="tvSeriesDBModel.tbl_userlogin" Role="tbl_userlogin" Multiplicity="1" />
+          <End Type="tvSeriesDBModel.tv_UserSerie" Role="tv_UserSerie" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_userlogin">
+              <PropertyRef Name="tv_userID" />
+            </Principal>
+            <Dependent Role="tv_UserSerie">
+              <PropertyRef Name="tv_userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tvSeriesDBModelStoreContainer" CdmEntityContainer="tvSeriesDBEntities">
+          <EntitySetMapping Name="tbl_Series">
+            <EntityTypeMapping TypeName="tvSeriesDBModel.tbl_Series">
+              <MappingFragment StoreEntitySet="tbl_Series">
+                <ScalarProperty Name="serie_id" ColumnName="serie_id" />
+                <ScalarProperty Name="serie_name" ColumnName="serie_name" />
+                <ScalarProperty Name="serie_date" ColumnName="serie_date" />
+                <ScalarProperty Name="serie_rating" ColumnName="serie_rating" />
+                <ScalarProperty Name="serie_link" ColumnName="serie_link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_userlogin">
+            <EntityTypeMapping TypeName="tvSeriesDBModel.tbl_userlogin">
+              <MappingFragment StoreEntitySet="tbl_userlogin">
+                <ScalarProperty Name="tv_username" ColumnName="tv_username" />
+                <ScalarProperty Name="tv_userID" ColumnName="tv_userID" />
+                <ScalarProperty Name="tv_userpass" ColumnName="tv_userpass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tv_UserSerie">
+            <EntityTypeMapping TypeName="tvSeriesDBModel.tv_UserSerie">
+              <MappingFragment StoreEntitySet="tv_UserSerie">
+                <ScalarProperty Name="tv_userid" ColumnName="tv_userid" />
+                <ScalarProperty Name="serie_id" ColumnName="serie_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

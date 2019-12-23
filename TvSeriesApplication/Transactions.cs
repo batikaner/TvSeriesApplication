@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,11 @@ namespace TvSeriesApplication
         public Transactions()
         {
             InitializeComponent();
-
         }
-
 
         MemberBL sb = new MemberBL();
         public void Transactions_Load(object sender, EventArgs e)
         {
-
             BoxBox.Enabled = true;
             BoxBox.ValueMember = "tv_userID";
             BoxBox.DisplayMember = "member_username";
@@ -37,7 +35,6 @@ namespace TvSeriesApplication
         {
             try
             {
-
                 MemberBL mbl = new MemberBL();
                 Members mem = new Members();
                 mem.tv_userID = (int)BoxBox.SelectedValue;
@@ -72,20 +69,73 @@ namespace TvSeriesApplication
         }
 
 
-
-
-
-
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            MemberBL mbl = new MemberBL();
-            Members mb = new Members();
-            mb.member_username = cmText.Text.Trim();
-            mb.member_passwd = mb.member_passwd;
-            mbl.MemberUpdate(mb);
+            //MemberBL mbl = new MemberBL();
+            //Members mb = new Members();
+            //mb.member_username = cmText.Text.Trim();
+            //mb.member_passwd = mb.member_passwd;
+            //mbl.MemberUpdate(mb);
+   
+            using (tvSeriesDBEntities ctx=new tvSeriesDBEntities())
+            {
+                try 
+                {   
+                    int x;  // not so clean 
+                    x = (int)BoxBox.SelectedValue;
 
+                    if (MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        tbl_userlogin lgn = ctx.tbl_userlogin.Find(x);
+                        lgn.tv_userpass = cmText.Text.Trim();
+                        
+                        ctx.SaveChanges();
+                        this.Hide();
+                        LoginScreen loginScreen = new LoginScreen();
+                        loginScreen.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error ! ");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        public string imagePath;
+        private void btnImage_Click(object sender, EventArgs e)
+        {
+            int x;
+            x = (int)BoxBox.SelectedValue;
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Title = "Choose an Image";
+            fd.Filter = "JPEG (*.jpg)|*.jpg|Png (*.png)|*.png";
+            if (fd.ShowDialog()==DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(fd.FileName);
+                imagePath = fd.FileName.ToString();
+                //its OK
 
+                FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                byte[] img = br.ReadBytes((int)fs.Length);
+                br.Close();
+                fs.Close();
+
+                using (tvSeriesDBEntities tx = new tvSeriesDBEntities())
+                {
+                    tbl_userlogin tbl = tx.tbl_userlogin.Find(x);
+                    tbl.tv_image = img;
+                    tx.SaveChanges();
+
+                    //var query = "update tbl_userlogin SET tv_image=img where boxbox=selected";
+                    //tx.Database.ExecuteSqlCommand(query  or "query");
+                }
+
+            }
         }
     }
 }

@@ -33,6 +33,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cmText = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnImage = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // BoxBox
@@ -76,17 +80,47 @@
             // 
             // cmText
             // 
-            this.cmText.Location = new System.Drawing.Point(72, 81);
+            this.cmText.Location = new System.Drawing.Point(69, 74);
             this.cmText.Name = "cmText";
             this.cmText.Size = new System.Drawing.Size(122, 20);
             this.cmText.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(238, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(183, 138);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnImage
+            // 
+            this.btnImage.Location = new System.Drawing.Point(238, 184);
+            this.btnImage.Name = "btnImage";
+            this.btnImage.Size = new System.Drawing.Size(75, 23);
+            this.btnImage.TabIndex = 6;
+            this.btnImage.Text = "Choose";
+            this.btnImage.UseVisualStyleBackColor = true;
+            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(337, 184);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // Transactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(230, 200);
+            this.ClientSize = new System.Drawing.Size(446, 228);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnImage);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cmText);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
@@ -95,6 +129,7 @@
             this.Name = "Transactions";
             this.Text = "Transactions";
             this.Load += new System.EventHandler(this.Transactions_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,5 +141,8 @@
         public System.Windows.Forms.ComboBox BoxBox;
         private System.Windows.Forms.TextBox cmText;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnImage;
+        private System.Windows.Forms.Button btnSave;
     }
 }
