@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="tvSeriesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'tvSeriesDB.dbo.tbl_serieComment' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbl_serieComment">
+          <Property Name="serie_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="comment" Type="varchar(max)" />
+        </EntityType>-->
         <EntityType Name="tbl_Series">
           <Key>
             <PropertyRef Name="serie_id" />
@@ -14,6 +21,8 @@
           <Property Name="serie_date" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="serie_rating" Type="float" Nullable="false" />
           <Property Name="serie_link" Type="nvarchar" MaxLength="200" />
+          <Property Name="serie_image" Type="varchar(max)" />
+          <Property Name="serie_episode" Type="int" />
         </EntityType>
         <EntityType Name="tbl_userlogin">
           <Key>
@@ -22,7 +31,7 @@
           <Property Name="tv_username" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="tv_userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tv_userpass" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="tv_image" Type="image" />
+          <Property Name="tv_image" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -33,6 +42,12 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <Property Name="serie_id" Type="int" />
           <Property Name="tv_userid" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+error 6004: The table 'tvSeriesDB.dbo.tbl_serieComment' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_tbl_serieComment_tbl_Series" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'tvSeriesDB.dbo.tbl_serieComment' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_tbl_serieComment_tbl_userlogin" />-->
         <Association Name="FK_tv_UserSerie_tbl_Series">
           <End Role="tbl_Series" Type="Self.tbl_Series" Multiplicity="0..1" />
           <End Role="tv_UserSerie" Type="Self.tv_UserSerie" Multiplicity="*" />
@@ -89,6 +104,8 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <Property Name="serie_rating" Type="Double" Nullable="false" />
           <Property Name="serie_link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tv_UserSerie" Relationship="Self.FK_tv_UserSerie_tbl_Series" FromRole="tbl_Series" ToRole="tv_UserSerie" />
+          <Property Name="serie_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="serie_episode" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_userlogin">
           <Key>
@@ -98,8 +115,8 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <Property Name="tv_userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tv_userpass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tv_UserSerie" Relationship="Self.FK_tv_UserSerie_tbl_userlogin" FromRole="tbl_userlogin" ToRole="tv_UserSerie" />
-          <Property Name="tv_image" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
+          <Property Name="tv_image" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          </EntityType>
         <EntityType Name="tv_UserSerie">
           <Key>
             <PropertyRef Name="tv_userid" />
@@ -145,8 +162,8 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
             <End Role="tbl_userlogin" EntitySet="tbl_userlogin" />
             <End Role="tv_UserSerie" EntitySet="tv_UserSerie" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          </EntityContainer>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -155,6 +172,8 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <EntitySetMapping Name="tbl_Series">
             <EntityTypeMapping TypeName="tvSeriesDBModel.tbl_Series">
               <MappingFragment StoreEntitySet="tbl_Series">
+                <ScalarProperty Name="serie_episode" ColumnName="serie_episode" />
+                <ScalarProperty Name="serie_image" ColumnName="serie_image" />
                 <ScalarProperty Name="serie_id" ColumnName="serie_id" />
                 <ScalarProperty Name="serie_name" ColumnName="serie_name" />
                 <ScalarProperty Name="serie_date" ColumnName="serie_date" />
@@ -195,7 +214,7 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

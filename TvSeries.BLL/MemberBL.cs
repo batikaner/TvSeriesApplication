@@ -25,8 +25,8 @@ namespace TvSeries.BLL
         {
             try
             {
-                SqlParameter[] param = { new SqlParameter("@tv_username", mbs.member_username), new SqlParameter("@tv_userpass", mbs.member_passwd) };
-                int feedback = DataAcc.ExecuteNonQuery("Insert into tbl_userlogin values (@tv_username,@tv_userpass)", param);
+                SqlParameter[] param = { new SqlParameter("@tv_username", mbs.member_username), new SqlParameter("@tv_userpass", mbs.member_passwd), new SqlParameter("tv_image",mbs.member_image) };
+                int feedback = DataAcc.ExecuteNonQuery("Insert into tbl_userlogin values (@tv_username,@tv_userpass,@tv_image)", param);
                 return feedback > 0;
             }
             catch (Exception)
@@ -60,6 +60,7 @@ namespace TvSeries.BLL
                     mem = new Members();
                     mem.member_username = dr["tv_username"].ToString();
                     mem.member_passwd = dr["tv_userpass"].ToString();
+                 //   mem.member_image = Convert.ToString(dr["tv_image"].ToString());
                 }
                 DataAcc.Dispose();
                 dr.Close();
@@ -75,35 +76,54 @@ namespace TvSeries.BLL
             SqlParameter[] p = { new SqlParameter("@tv_userID", tvv_userid) };
             return DataAcc.ExecuteNonQuery("delete from tbl_userlogin where tv_userID=@tv_userID", p) > 0;
         }
+        
         public DataTable MemberList()
         {
             return DataAcc.MyDataTable("select * from tbl_Series");
         }
+
         public bool MemberUpdate(Members mem)
         {
             SqlParameter[] p = { new SqlParameter("@tv_username", mem.member_username), new SqlParameter("@tv_userpass", mem.member_passwd), new SqlParameter("@tv_userID", mem.tv_userID) };
             int sonuc = DataAcc.ExecuteNonQuery("UPDATE tbl_userlogin SET tv_username=@tv_username, tv_userpass=@tv_userpass  WHERE tv_userID=@tv_userID", p);
             return sonuc > 0;
         }
-        public bool SameMember(string tvv_userid)
-        {
-            SqlParameter[] p = { new SqlParameter("@tv_userID", tvv_userid) };
-            return DataAcc.ExecuteNonQuery("delete from tbl_userlogin where tv_userID=@tv_userID", p) > 0;
-        }
+        //public bool SameMember(string tvv_userid)
+        //{
+        //    SqlParameter[] p = { new SqlParameter("@tv_userID", tvv_userid) };
+        //    return DataAcc.ExecuteNonQuery("delete from tbl_userlogin where tv_userID=@tv_userID", p) > 0;
+        //}
         public void Dispose()
         {
             ((IDisposable)DataAcc).Dispose();
         }
 
         public string imagePath;
-        public void ImageTest()
+        public Members ImageTest(int iid)
         {
-            FileStream fs = new FileStream(imagePath,FileMode.Open,FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            byte[] img = br.ReadBytes((int)fs.Length);
-            br.Close();
-            fs.Close();
+            //FileStream fs = new FileStream(imagePath,FileMode.Open,FileAccess.Read);
+            //BinaryReader br = new BinaryReader(fs);
+            //byte[] img = br.ReadBytes((int)fs.Length);
+            //br.Close();
+            //fs.Close();
+            SqlParameter[] p = { new SqlParameter("@tv_userID", iid) };
+            SqlDataReader dtr = DataAcc.ExecuteReader("select * from tbl_userlogin  where tv_userID= @tv_userID", p);
+            Members members= null;
+            if (dtr.Read())
+            {
+                 members = new Members();
+                members.member_passwd= dtr["tv_userpass"].ToString();
+                members.member_image = Convert.ToString(dtr["tv_image"]);
+            }
+            dtr.Close();
+            return members;
+
+
         }
+
+
+
+
 
 
 

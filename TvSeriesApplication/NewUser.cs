@@ -38,6 +38,8 @@ namespace TvSeriesApplication
 
                 mb.member_username = txtNewUser.Text.Trim();
                 mb.member_passwd = txtNewUserPass.Text.Trim();
+                string imgPatg = "C:\\Users\\Batı\\Desktop\\root@kali.7z\\Dersler\\fcs6\\pewds.gif  ";
+                mb.member_image = imgPatg;
 
                 if (MessageBox.Show("Do you want to register?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {

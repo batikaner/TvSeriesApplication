@@ -29,7 +29,25 @@ namespace TvSeriesApplication
             BoxBox.ValueMember = "tv_userID";
             BoxBox.DisplayMember = "member_username";
             BoxBox.DataSource = sb.memberList();
-            
+        }
+
+
+        public void resimbul(int iid)
+        {
+            MemberBL mbl = new MemberBL();
+            Members mem = new Members();
+            mem = mbl.ImageTest(iid);
+            if (mem != null)
+            {
+                cmText.Text = mem.member_passwd.ToString();
+                this.pictureBox1.ImageLocation = mem.member_image;
+                this.pictureBox1.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Üzgünüm");
+            }
+
         }
         public void Delete()
         {
@@ -59,24 +77,33 @@ namespace TvSeriesApplication
 
                 throw;
             }
-        }
-        
+        }        
         
         private void btnDelete_Click(object sender, EventArgs e)
         {
             cmText.Text = BoxBox.Text;
             Delete();
         }
-
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //MemberBL mbl = new MemberBL();
-            //Members mb = new Members();
-            //mb.member_username = cmText.Text.Trim();
-            //mb.member_passwd = mb.member_passwd;
-            //mbl.MemberUpdate(mb);
-   
+            
+            using (tvSeriesDBEntities ctx = new tvSeriesDBEntities())
+            {
+                try
+                {
+                    int y;
+                    y = (int)BoxBox.SelectedValue;
+                    tbl_userlogin s = ctx.tbl_userlogin.Find(y);
+                    s.tv_userpass = cmText.Text.Trim();
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
             using (tvSeriesDBEntities ctx=new tvSeriesDBEntities())
             {
                 try 
@@ -106,29 +133,36 @@ namespace TvSeriesApplication
             }
         }
         public string imagePath;
-        private void btnImage_Click(object sender, EventArgs e)
-        {
-            int x;
-            x = (int)BoxBox.SelectedValue;
+        public void btnImage_Click(object sender, EventArgs e)
+        { 
+       
+            
             OpenFileDialog fd = new OpenFileDialog();
             fd.Title = "Choose an Image";
             fd.Filter = "JPEG (*.jpg)|*.jpg|Png (*.png)|*.png";
             if (fd.ShowDialog()==DialogResult.OK)
             {
-                pictureBox1.Image = Image.FromFile(fd.FileName);
-                imagePath = fd.FileName.ToString();
-                //its OK
+                string pathhh = fd.FileName;
+            //    MessageBox.Show(pathhh);
 
-                FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                byte[] img = br.ReadBytes((int)fs.Length);
-                br.Close();
-                fs.Close();
+                //pictureBox1.Image = Image.FromFile(fd.FileName);
+                //imagePath = fd.FileName.ToString();
+                ////its OK
+
+                //FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Write);
+                //BinaryReader br = new BinaryReader(fs);
+                //byte[] img = br.ReadBytes((int)fs.Length);
+                //br.Close();
+                //fs.Close();
 
                 using (tvSeriesDBEntities tx = new tvSeriesDBEntities())
                 {
+                    int x;
+                    x = (int)BoxBox.SelectedValue;
+                    
                     tbl_userlogin tbl = tx.tbl_userlogin.Find(x);
-                    tbl.tv_image = img;
+                    tbl.tv_userpass = cmText.Text.Trim();
+                    tbl.tv_image = pathhh;
                     tx.SaveChanges();
 
                     //var query = "update tbl_userlogin SET tv_image=img where boxbox=selected";
@@ -136,6 +170,11 @@ namespace TvSeriesApplication
                 }
 
             }
+        }
+
+        private void btnResimGöster_Click(object sender, EventArgs e)
+        {
+            resimbul((int)BoxBox.SelectedValue);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace TvSeries.BLL
         public string serie_date { get; set; }
         public double serie_rating { get; set; }
         public string serie_link { get; set; }
+        public string serie_image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tv_UserSerie> tv_UserSerie { get; set; }

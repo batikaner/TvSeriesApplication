@@ -35,7 +35,7 @@
             this.cmText = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnImage = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnResimGöster = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.DarkRed;
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(19, 142);
+            this.btnDelete.Location = new System.Drawing.Point(57, 142);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(128, 142);
+            this.btnUpdate.Location = new System.Drawing.Point(138, 142);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 3;
@@ -87,15 +87,17 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::TvSeriesApplication.Properties.Resources.cRickc_;
             this.pictureBox1.Location = new System.Drawing.Point(238, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(183, 138);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // btnImage
             // 
-            this.btnImage.Location = new System.Drawing.Point(238, 184);
+            this.btnImage.Location = new System.Drawing.Point(297, 184);
             this.btnImage.Name = "btnImage";
             this.btnImage.Size = new System.Drawing.Size(75, 23);
             this.btnImage.TabIndex = 6;
@@ -103,22 +105,23 @@
             this.btnImage.UseVisualStyleBackColor = true;
             this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
             // 
-            // btnSave
+            // btnResimGöster
             // 
-            this.btnSave.Location = new System.Drawing.Point(337, 184);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnResimGöster.Location = new System.Drawing.Point(100, 184);
+            this.btnResimGöster.Name = "btnResimGöster";
+            this.btnResimGöster.Size = new System.Drawing.Size(75, 23);
+            this.btnResimGöster.TabIndex = 8;
+            this.btnResimGöster.Text = "Bilgileri Getir";
+            this.btnResimGöster.UseVisualStyleBackColor = true;
+            this.btnResimGöster.Click += new System.EventHandler(this.btnResimGöster_Click);
             // 
             // Transactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(446, 228);
-            this.Controls.Add(this.btnSave);
+            this.ClientSize = new System.Drawing.Size(455, 241);
+            this.Controls.Add(this.btnResimGöster);
             this.Controls.Add(this.btnImage);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cmText);
@@ -142,7 +145,7 @@
         private System.Windows.Forms.TextBox cmText;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnImage;
-        private System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnImage;
+        private System.Windows.Forms.Button btnResimGöster;
     }
 }

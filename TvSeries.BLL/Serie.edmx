@@ -14,6 +14,7 @@
           <Property Name="serie_date" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="serie_rating" Type="float" Nullable="false" />
           <Property Name="serie_link" Type="nvarchar" MaxLength="200" />
+          <Property Name="serie_image" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="tbl_userlogin">
           <Key>
@@ -22,6 +23,7 @@
           <Property Name="tv_username" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="tv_userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tv_userpass" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tv_image" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -88,6 +90,7 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <Property Name="serie_rating" Type="Double" Nullable="false" />
           <Property Name="serie_link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tv_UserSerie" Relationship="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series" FromRole="tbl_Series" ToRole="tv_UserSerie" />
+          <Property Name="serie_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_userlogin">
           <Key>
@@ -97,6 +100,7 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <Property Name="tv_userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tv_userpass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tv_UserSerie" Relationship="tvSeriesDBModel.FK_tv_UserSerie_tbl_userlogin" FromRole="tbl_userlogin" ToRole="tv_UserSerie" />
+          <Property Name="tv_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="tvSeriesDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_Series" EntityType="Self.tbl_Series" />
@@ -153,6 +157,7 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <EntitySetMapping Name="tbl_Series">
             <EntityTypeMapping TypeName="tvSeriesDBModel.tbl_Series">
               <MappingFragment StoreEntitySet="tbl_Series">
+                <ScalarProperty Name="serie_image" ColumnName="serie_image" />
                 <ScalarProperty Name="serie_id" ColumnName="serie_id" />
                 <ScalarProperty Name="serie_name" ColumnName="serie_name" />
                 <ScalarProperty Name="serie_date" ColumnName="serie_date" />
@@ -164,6 +169,7 @@ warning 6002: The table/view 'tvSeriesDB.dbo.tv_UserSerie' does not have a prima
           <EntitySetMapping Name="tbl_userlogin">
             <EntityTypeMapping TypeName="tvSeriesDBModel.tbl_userlogin">
               <MappingFragment StoreEntitySet="tbl_userlogin">
+                <ScalarProperty Name="tv_image" ColumnName="tv_image" />
                 <ScalarProperty Name="tv_username" ColumnName="tv_username" />
                 <ScalarProperty Name="tv_userID" ColumnName="tv_userID" />
                 <ScalarProperty Name="tv_userpass" ColumnName="tv_userpass" />

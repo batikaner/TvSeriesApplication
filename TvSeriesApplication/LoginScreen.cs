@@ -17,8 +17,8 @@ namespace TvSeriesApplication
 {
     public partial class LoginScreen : Form
     {
-        
 
+        public static string tester="";
 
         public LoginScreen()
         {
@@ -52,6 +52,10 @@ namespace TvSeriesApplication
                 if (mb == null)
                 {
                     MessageBox.Show("Access Denied ! ");
+                   
+                    MainForm form = new MainForm();
+                    tester = mb.member_username.Trim();
+                    tester = txtUsername.Text.Trim();
                 }
                 else
                 {
@@ -63,7 +67,7 @@ namespace TvSeriesApplication
             }
             catch (Exception)
             {
-                throw;
+              //  throw;
             }
             finally
             {

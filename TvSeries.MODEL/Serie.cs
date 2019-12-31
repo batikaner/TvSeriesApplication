@@ -17,5 +17,10 @@ namespace TvSeries.MODEL
 
         public string serie_link { get; set; }
         public int serie_id { get; set; }
+
+        public int serie_episode { get; set; }
+
+
+        public string serie_image { get; set; }
     }
 }

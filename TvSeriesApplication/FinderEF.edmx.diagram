@@ -4,13 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aeac182a4830488bac09be5979b5e965" Name="Diagram1">
+      <Diagram DiagramId="aeac182a4830488bac09be5979b5e965" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="tvSeriesDBModel.tbl_Series" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tvSeriesDBModel.tbl_userlogin" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tvSeriesDBModel.tv_UserSerie" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="tvSeriesDBModel.tbl_userlogin" Width="2.375" PointX="10.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="tvSeriesDBModel.tv_UserSerie" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_Series" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.25" PointY="1.7689925130208333" />
+          <ConnectorPoint PointX="5.25" PointY="1.7689925130208333" />
+        </AssociationConnector>
         <AssociationConnector Association="tvSeriesDBModel.FK_tv_UserSerie_tbl_userlogin" ManuallyRouted="false" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

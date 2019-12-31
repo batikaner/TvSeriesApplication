@@ -32,6 +32,7 @@ namespace TvSeries.BLL
             SqlParameter[] p = { new SqlParameter("@serie_id", numara) };
             SqlDataReader dtr = da.ExecuteReader("select * from tbl_Series  where serie_id= @serie_id", p);
             Serie serie = null;
+
             if (dtr.Read())
             {
                 serie = new Serie();
@@ -40,10 +41,47 @@ namespace TvSeries.BLL
                 serie.serie_rating = dtr["serie_rating"].ToString();
                 serie.serie_id = Convert.ToInt32(dtr["serie_id"]);
                 serie.serie_link = dtr["serie_link"].ToString();
+                serie.serie_image = Convert.ToString(dtr["serie_image"]);
             }
             dtr.Close();
             return serie;
         }
+
+        public Comment tv_Comment(int id)
+        {
+            SqlParameter[] p = { new SqlParameter("serie_id", id) };
+            SqlDataReader dtr = da.ExecuteReader("select * from tbl_serieComment where serie_id=@serie_id", p);
+            Comment comment = null;
+            while (dtr.Read())
+            {   
+                comment = new Comment();
+                comment.comment = dtr["comment"].ToString();
+                comment.serie_id = dtr["serie_id"].ToString();
+                comment.user_id = dtr["user_id"].ToString();
+                
+            }
+            dtr.Close();
+            return comment;
+
+           
+        }
+
+
+
+        public List<Comment> GetComments(int serieid)
+        {
+            List<Comment> lst = new List<Comment>();
+            SqlParameter[] p = { new SqlParameter("@serie_id", serieid) };
+            SqlDataReader dr = da.ExecuteReader("select tbl_serieComment.serie_id, tbl_serieComment.user_id , tbl_userlogin.tv_username ,tbl_serieComment.comment from tbl_serieComment inner join tbl_userlogin on tbl_serieComment.user_id = tbl_userlogin.tv_userID where tbl_serieComment.serie_id = @serie_id", p);
+
+            while (dr.Read())
+            {
+                lst.Add(new Comment { serie_id = (dr["serie_id"].ToString()), user_id =(dr["user_id"]).ToString(),UserName=(dr["tv_username"]).ToString() , comment =(dr["comment"]).ToString()  });
+            }
+            dr.Close();
+            return lst;
+        }
+
 
 
     }

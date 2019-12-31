@@ -16,7 +16,7 @@ namespace TvSeriesApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Transactions());
+            Application.Run(new LoginScreen());
         }
     }
 }

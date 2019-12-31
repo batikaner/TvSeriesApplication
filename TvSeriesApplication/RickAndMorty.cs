@@ -8,15 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TvSeries.BLL;
+using TvSeries.MODEL;
 
 namespace TvSeriesApplication
 {
     public partial class RickAndMorty : Form
     {
+            int deneme;
+       
         public RickAndMorty()
         {
             InitializeComponent();
             dataGridView1.Visible = false;
+           
+           //  deneme = (int)MainForm.cmbSeries.SelectedValue;
+        }
+
+        private MainForm MainForm;
+        public RickAndMorty(MainForm MainForm)
+        {
+            this.MainForm = MainForm;
+
+        }
+
+        public void testest()
+        {
+            using (tvSeriesDBEntities ctx=new tvSeriesDBEntities())
+            {
+                tbl_Series s = ctx.tbl_Series.Find(deneme);
+                s.serie_name = label1.Text;
+            }
         }
 
         private void showSeriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -25,7 +46,6 @@ namespace TvSeriesApplication
             {
                 this.Visible = false;
                 MainForm mf = new MainForm();
-                mf.Show();
             }
             else
             {
@@ -40,19 +60,19 @@ namespace TvSeriesApplication
             if (MessageBox.Show("Database Görüntülensin Mi?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 MemberBL bl = new MemberBL();
-            dataGridView1.Visible = true;
-            dataGridView1.DataSource = bl.MemberList();
+                dataGridView1.Visible = true;
+                dataGridView1.DataSource = bl.MemberList();
             }
             else
             {
                 return;
             }
-
-
-
-          
         }
 
-     
+        private void RickAndMorty_Load(object sender, EventArgs e)
+        {
+
+
+        }
     }
 }

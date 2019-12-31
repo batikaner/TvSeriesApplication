@@ -17,7 +17,7 @@ namespace TvSeriesApplication
         public string tv_username { get; set; }
         public int tv_userID { get; set; }
         public string tv_userpass { get; set; }
-        public byte[] tv_image { get; set; }
+        public string tv_image { get; set; }
     
         public virtual tv_UserSerie tv_UserSerie { get; set; }
     }

@@ -17,5 +17,7 @@ namespace TvSeries.MODEL
 
         public int tv_userID  { get; set; }
 
+        public string member_image { get; set; }
+
     }
 }
